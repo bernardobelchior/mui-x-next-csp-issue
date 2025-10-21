@@ -1,18 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { BarChart } from "@mui/x-charts/BarChart";
 import { LineChart } from "@mui/x-charts/LineChart";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import {
-  AlertCircle,
-  CheckCircle2,
-  Download,
-  FileText,
-  Info,
-  Database,
-} from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Download, Database } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -20,8 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BarChartPro } from "../../mui-x/packages/x-charts-pro/src/index";
 
@@ -119,137 +107,9 @@ const rows = [
 ];
 
 export default function Home() {
-  const [cspViolations, setCspViolations] = useState<string[]>([]);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       <div className="container mx-auto py-8 px-4 max-w-7xl">
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <FileText className="h-8 w-8 text-slate-700" />
-            <h1 className="text-4xl font-bold text-slate-900">
-              MUI X Charts CSP Nonce Demo
-            </h1>
-          </div>
-          <p className="text-slate-600 text-lg">
-            Demonstrating Content Security Policy (CSP) nonce support for chart
-            export functionality
-          </p>
-        </div>
-
-        <Alert className="mb-6 border-blue-200 bg-blue-50">
-          <Info className="h-4 w-4 text-blue-600" />
-          <AlertTitle className="text-blue-900">About This Demo</AlertTitle>
-          <AlertDescription className="text-blue-800">
-            This application demonstrates the CSP nonce issue with MUI X Charts
-            export functionality. The app has strict CSP headers enabled, and
-            chart exports may trigger violations if nonce support is not
-            properly implemented.
-          </AlertDescription>
-        </Alert>
-
-        <div className="grid gap-6 mb-6 lg:grid-cols-2">
-          <Card className="border-slate-200 shadow-md">
-            <CardHeader className="bg-slate-50">
-              <CardTitle className="flex items-center gap-2">
-                <CheckCircle2 className="h-5 w-5 text-green-600" />
-                CSP Configuration
-              </CardTitle>
-              <CardDescription>Active Content Security Policy</CardDescription>
-            </CardHeader>
-            <CardContent className="pt-6">
-              <div className="space-y-3">
-                <div>
-                  <Badge variant="outline" className="mb-2">
-                    style-src-elem
-                  </Badge>
-                  <code className="block text-xs bg-slate-100 p-2 rounded">
-                    &apos;self&apos; &apos;nonce-[random]&apos;
-                  </code>
-                </div>
-                <div>
-                  <Badge variant="outline" className="mb-2">
-                    style-src-attr
-                  </Badge>
-                  <code className="block text-xs bg-slate-100 p-2 rounded">
-                    &apos;unsafe-inline&apos;
-                  </code>
-                </div>
-                <div>
-                  <Badge variant="outline" className="mb-2">
-                    script-src
-                  </Badge>
-                  <code className="block text-xs bg-slate-100 p-2 rounded">
-                    &apos;self&apos; &apos;nonce-[random]&apos;
-                    &apos;strict-dynamic&apos;
-                  </code>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border-slate-200 shadow-md">
-            <CardHeader className="bg-slate-50">
-              <CardTitle className="flex items-center gap-2">
-                <Info className="h-5 w-5 text-blue-600" />
-                Implementation Details
-              </CardTitle>
-              <CardDescription>Current Setup</CardDescription>
-            </CardHeader>
-            <CardContent className="pt-6">
-              <div className="space-y-3 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-slate-600">@mui/x-charts:</span>
-                  <span className="font-mono text-slate-900">8.14.0</span>
-                </div>
-                <Separator />
-                <div className="flex justify-between">
-                  <span className="text-slate-600">@mui/material:</span>
-                  <span className="font-mono text-slate-900">7.1.1</span>
-                </div>
-                <Separator />
-                <div className="flex justify-between">
-                  <span className="text-slate-600">Next.js:</span>
-                  <span className="font-mono text-slate-900">13.5.1</span>
-                </div>
-                <Separator />
-                <div className="flex justify-between">
-                  <span className="text-slate-600">
-                    AppRouterCacheProvider:
-                  </span>
-                  <span className="font-mono text-slate-900">Enabled</span>
-                </div>
-                <Separator />
-                <div className="flex justify-between">
-                  <span className="text-slate-600">Nonce Support:</span>
-                  <Badge variant="secondary">Active</Badge>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {cspViolations.length > 0 && (
-          <Alert className="mb-6 border-red-200 bg-red-50">
-            <AlertCircle className="h-4 w-4 text-red-600" />
-            <AlertTitle className="text-red-900">
-              CSP Violations Detected
-            </AlertTitle>
-            <AlertDescription className="text-red-800">
-              <div className="mt-2 space-y-1">
-                {cspViolations.map((violation, index) => (
-                  <div
-                    key={index}
-                    className="text-xs font-mono bg-red-100 p-2 rounded"
-                  >
-                    {violation}
-                  </div>
-                ))}
-              </div>
-            </AlertDescription>
-          </Alert>
-        )}
-
         <Tabs defaultValue="bar" className="space-y-4">
           <TabsList className="grid w-full grid-cols-3 max-w-lg">
             <TabsTrigger value="bar">Bar Chart</TabsTrigger>
@@ -294,14 +154,6 @@ export default function Home() {
                     showToolbar
                   />
                 </div>
-                <Alert className="mt-4 border-amber-200 bg-amber-50">
-                  <Info className="h-4 w-4 text-amber-600" />
-                  <AlertDescription className="text-amber-800 text-sm">
-                    <strong>Note:</strong> Export toolbar is available in MUI X
-                    Charts Pro. The free version shown here demonstrates the
-                    component rendering with CSP compliance.
-                  </AlertDescription>
-                </Alert>
               </CardContent>
             </Card>
           </TabsContent>
@@ -333,14 +185,6 @@ export default function Home() {
                     height={350}
                   />
                 </div>
-                <Alert className="mt-4 border-amber-200 bg-amber-50">
-                  <Info className="h-4 w-4 text-amber-600" />
-                  <AlertDescription className="text-amber-800 text-sm">
-                    <strong>Note:</strong> Export toolbar is available in MUI X
-                    Charts Pro. The free version shown here demonstrates the
-                    component rendering with CSP compliance.
-                  </AlertDescription>
-                </Alert>
               </CardContent>
             </Card>
           </TabsContent>
@@ -386,68 +230,10 @@ export default function Home() {
                     }}
                   />
                 </div>
-                <Alert className="mt-4 border-emerald-200 bg-emerald-50">
-                  <Info className="h-4 w-4 text-emerald-600" />
-                  <AlertDescription className="text-emerald-800 text-sm">
-                    <strong>CSP Nonce Support:</strong> MUI X Data Grid already
-                    supports nonce props for CSP compliance when using export
-                    features. This demonstrates how the grid renders with proper
-                    styling under strict CSP policies.
-                  </AlertDescription>
-                </Alert>
               </CardContent>
             </Card>
           </TabsContent>
         </Tabs>
-
-        <Card className="mt-6 border-slate-200 shadow-md bg-slate-50">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <FileText className="h-5 w-5" />
-              Issue Summary
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4 text-sm text-slate-700">
-              <div>
-                <h3 className="font-semibold text-slate-900 mb-2">Problem:</h3>
-                <p>
-                  When using MUI X Charts Pro with export functionality enabled,
-                  the chart export process creates inline styles or style
-                  elements without proper nonce attributes, causing CSP
-                  violations in strict security environments.
-                </p>
-              </div>
-
-              <Separator />
-
-              <div>
-                <h3 className="font-semibold text-slate-900 mb-2">
-                  Expected Behavior:
-                </h3>
-                <p>
-                  Similar to DataGrid&apos;s nonce prop, charts should accept a
-                  nonce prop or automatically inherit it from
-                  AppRouterCacheProvider, ensuring all dynamically created
-                  styles include the proper nonce attribute for CSP compliance.
-                </p>
-              </div>
-
-              <Separator />
-
-              <div>
-                <h3 className="font-semibold text-slate-900 mb-2">
-                  Workaround:
-                </h3>
-                <p>
-                  Currently, teams must either relax their CSP rules (reducing
-                  security) or implement custom export solutions. A built-in
-                  nonce prop would resolve this issue.
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </div>
   );
