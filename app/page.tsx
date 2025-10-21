@@ -1,5 +1,3 @@
-"use client";
-
 import { LineChart } from "@mui/x-charts/LineChart";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Download, Database } from "lucide-react";
@@ -11,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BarChartPro } from "../../mui-x/packages/x-charts-pro/src/index";
+import { BarChartPro } from "@mui/x-charts-pro";
 
 const salesData = [
   { month: "Jan", sales: 4000, revenue: 2400 },
